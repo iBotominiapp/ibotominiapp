@@ -5,66 +5,69 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Bot Help</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 1rem;
-      line-height: 1.4;
+    body { font-family: Arial, sans-serif; padding:1rem; background:#f9f9f9 }
+    h1    { font-size:1.6rem; margin-bottom:.5rem }
+    p     { margin-bottom:1rem }
+    button {
+      display:block;
+      width:100%;
+      max-width:400px;
+      margin:.3rem auto;
+      padding:.6rem 1rem;
+      font-size:1rem;
+      border:none;
+      border-radius:4px;
+      background:#007bff;
+      color:#fff;
+      cursor:pointer;
     }
-    pre {
-      background: #f7f7f7;
-      padding: .5rem;
-      border-radius: 4px;
-      overflow-x: auto;
-    }
-    .buttons {
-      display: grid;
-      gap: .5rem;
-      margin-top: 1rem;
-    }
-    .buttons button {
-      padding: .75rem 1rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      background: #0088cc;
-      color: white;
-      cursor: pointer;
-    }
-    .buttons button:hover {
-      background: #006699;
-    }
+    button#close { background:#dc3545 }
   </style>
 </head>
 <body>
-  <h1>📔 Help Menu</h1>
-  <pre>
-丨 乃ㄖㄒㄖ
+  <h1>🤖 Bot Help Menu</h1>
+  <p>Choose a topic:</p>
 
-⭐️ To donate to the bot developers, visit the main bot here ⭐️ @iboto_GP_bot
-/stars Donations from the main bot only
-  </pre>
-
-  <div class="buttons">
-    <button data-callback="menu">ℹ️ About the Bot</button>
-    <button data-callback="functions4">Group Menu 📋</button>
-    <button data-callback="submenu_commands_manage">Commands &amp; Manage 🧰</button>
-    <button data-callback="submenu_channel_forward">📺 Channel & Forward To 📤</button>
-    <button data-callback="reply_function">Reply to Messages 📬</button>
-    <button data-callback="add_to_group">👥 How to Clone BOT</button>
-    <button data-callback="controls_back">🔙 Main Menu</button>
-  </div>
+  <button id="topic-main">🏠 Main Management Menu</button>
+  <button id="topic-settings">📋 Settings Menu</button>
+  <button id="topic-blacklist">🛡️ Bot Controls: Blacklist</button>
+  <button id="topic-blackmarker">🖤 Black Marker</button>
+  <button id="topic-ai-limits">⏱ AI Limits</button>
+  <button id="topic-vip">🖤 VIP Manager</button>
+  <button id="topic-auto-replies">🗣🔃 Automated Replies</button>
+  <button id="topic-whitelist-links">🔖 Whitelist Links</button>
+  <button id="topic-forward">📤 Forward Messages</button>
+  
+  <button id="close">❌ Close</button>
 
   <script>
-    // Tell Telegram we’re ready
     window.Telegram.WebApp.ready();
 
-    // Attach the same handler to all buttons
-    document.querySelectorAll('button[data-callback]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const payload = { callback_data: btn.dataset.callback };
-        window.Telegram.WebApp.sendData(JSON.stringify(payload));
-      });
-    });
+    function sendTopic(t){
+      window.Telegram.WebApp.sendData(JSON.stringify({topic: t}));
+    }
+
+    document.getElementById('topic-main')
+            .addEventListener('click', ()=> sendTopic('main'));
+    document.getElementById('topic-settings')
+            .addEventListener('click', ()=> sendTopic('settings'));
+    document.getElementById('topic-blacklist')
+            .addEventListener('click', ()=> sendTopic('blacklist'));
+    document.getElementById('topic-blackmarker')
+            .addEventListener('click', ()=> sendTopic('blackmarker'));
+    document.getElementById('topic-ai-limits')
+            .addEventListener('click', ()=> sendTopic('ai_limits'));
+    document.getElementById('topic-vip')
+            .addEventListener('click', ()=> sendTopic('vip'));
+    document.getElementById('topic-auto-replies')
+            .addEventListener('click', ()=> sendTopic('auto_replies'));
+    document.getElementById('topic-whitelist-links')
+            .addEventListener('click', ()=> sendTopic('whitelist_links'));
+    document.getElementById('topic-forward')
+            .addEventListener('click', ()=> sendTopic('forward'));
+
+    document.getElementById('close')
+            .addEventListener('click', ()=> window.Telegram.WebApp.close());
   </script>
 </body>
 </html>
