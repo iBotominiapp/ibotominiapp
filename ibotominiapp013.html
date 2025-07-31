@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Bot Help</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 1rem; }
+    h1 { font-size: 1.5rem; }
+    button { margin: .5rem 0; padding: .5rem 1rem; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>📔 Bot Help Menu</h1>
+  <p>Welcome to the interactive help. Tap a topic below:</p>
+  <button id="topic-block">🚫 Blocking</button><br/>
+  <button id="topic-vip">📋 VIP Management</button><br/>
+  <button id="close">❌ Close</button>
+
+  <script>
+    // Wait until Telegram WebApp is ready
+    window.Telegram.WebApp.ready();
+
+    document.getElementById('close').addEventListener('click', () => {
+      // Close the Web App and return to chat
+      window.Telegram.WebApp.close();
+    });
+
+    // Example: send a “topic” back to your bot
+    document.getElementById('topic-block').addEventListener('click', () => {
+      window.Telegram.WebApp.sendData(JSON.stringify({ topic: 'block' }));
+    });
+  </script>
+</body>
+</html>
