@@ -18,13 +18,7 @@
       padding: 1rem;
       line-height: 1.4;
     }
-    pre {
-      background: var(--panel);
-      color: var(--text);
-      padding: .5rem;
-      border-radius: 4px;
-      overflow-x: auto;
-    }
+    .hidden { display: none; }
     .buttons {
       display: grid;
       gap: .5rem;
@@ -43,6 +37,12 @@
     .buttons button:hover {
       background: #1f4068;
     }
+    pre {
+      background: var(--panel);
+      color: var(--text);
+      padding: .5rem;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -54,59 +54,97 @@
 /stars Donations from the main bot only
   </pre>
 
-  <div class="buttons">
-    <!-- Primary -->
-    <button data-callback="menu">ℹ️ About the Bot</button>
-    <button data-callback="functions4">Group Menu 📋</button>
-    <button data-callback="submenu_commands_manage">Commands &amp; Manage 🧰</button>
-    <button data-callback="submenu_channel_forward">📺 Channel & Forward To 📤</button>
-    <button data-callback="reply_function">Reply to Messages 📬</button>
-    <button data-callback="add_to_group">👥 How to Clone BOT</button>
-    <button data-callback="controls_back">🔙 Main Menu</button>
+  <!-- MAIN MENU -->
+  <div id="main-menu" class="buttons">
+    <button data-show="about-menu">ℹ️ About the Bot</button>
+    <button data-show="group-menu">Group Menu 📋</button>
+    <button data-show="commands-menu">Commands &amp; Manage 🧰</button>
+    <button data-show="forward-menu">📺 Channel & Forward To 📤</button>
+    <button data-show="reply-menu">Reply to Messages 📬</button>
+    <button data-show="clone-menu">👥 How to Clone BOT</button>
+  </div>
 
-    <!-- “Commands & Manage” submenu -->
-    <button data-callback="functions6">🚫 Block</button>
-    <button data-callback="functions">General Block 📧</button>
-    <button data-callback="whitelist_links">Whitelist Links 🌐</button>
-    <button data-callback="functionstwo">✍️ Censor</button>
-    <button data-callback="functionai">Msg Counter/Limiter ⏱</button>
-    <button data-callback="help_commandtwo">VIP Whitelist 📋</button>
-    <button data-callback="functionmedia">Manage VIP Media 📷</button>
-    <button data-callback="menu1">🔙 Back to Help Menu</button>
+  <!-- ABOUT SUBMENU -->
+  <div id="about-menu" class="buttons hidden">
+    <p>
+      🤖 <b>Welcome to I BOTO</b> – the advanced management bot! ✨<br>
+      Manage your group with user management, content blocking, spam prevention, and more.
+    </p>
+    <button data-back>🔙 Back</button>
+  </div>
 
-    <!-- “Channel & Forward To” submenu -->
-    <button data-callback="functions3">Channel Control 📺</button>
-    <button data-callback="functions_forward">Auto Forward Messages 📤</button>
-    <button data-callback="menu1">🔙 Back to Help Menu</button>
+  <!-- GROUP MENU SUBMENU -->
+  <div id="group-menu" class="buttons hidden">
+    <p>📋 Here’s how you manage your admin groups…</p>
+    <button data-back>🔙 Back</button>
+  </div>
 
-    <!-- “Nested Commands” submenu -->
-    <button data-callback="help_command">📜 Commands 1️⃣</button>
-    <button data-callback="functions5">📜 Commands 2️⃣</button>
-    <button data-callback="commands_setup">⚙️ Commands Setup</button>
-    <button data-callback="menu1">🔙 Back to Help Menu</button>
+  <!-- COMMANDS SUBMENU -->
+  <div id="commands-menu" class="buttons hidden">
+    <button data-show="block-menu">🚫 Block Settings</button>
+    <button data-show="whitelist-menu">Whitelist Links 🌐</button>
+    <button data-show="censor-menu">✍️ Censor</button>
+    <button data-back>🔙 Back</button>
+  </div>
 
-    <!-- “Combined Submenu Commands” -->
-    <button data-callback="functionlang">🈲 Manage & Block</button>
-    <button data-callback="help_command">📜 Commands 1️⃣</button>
-    <button data-callback="functions5">📜 Commands 2️⃣</button>
-    <button data-callback="commands_setup">⚙️ Commands Setup</button>
-    <button data-callback="help_commandtwo">VIP Whitelist 📋</button>
-    <button data-callback="functionmedia">Manage VIP Media 📷</button>
-    <button data-callback="functions6">🚫 Block</button>
-    <button data-callback="functions">General Block 📧</button>
-    <button data-callback="whitelist_links">Whitelist Links 🌐</button>
-    <button data-callback="functionstwo">✍️ Censor</button>
-    <button data-callback="functionai">Msg Counter/Limiter ⏱</button>
-    <button data-callback="menu1">🔙 Back to Help Menu</button>
+  <!-- FORWARD SUBMENU -->
+  <div id="forward-menu" class="buttons hidden">
+    <p>📺 Set up channel forwarding here…</p>
+    <button data-back>🔙 Back</button>
+  </div>
+
+  <!-- REPLY SUBMENU -->
+  <div id="reply-menu" class="buttons hidden">
+    <p>📬 Reply-to-messages setup…</p>
+    <button data-back>🔙 Back</button>
+  </div>
+
+  <!-- CLONE BOT SUBMENU -->
+  <div id="clone-menu" class="buttons hidden">
+    <p>👥 To clone the bot, send /clone in your group.</p>
+    <button data-back>🔙 Back</button>
+  </div>
+
+  <!-- BLOCK SETTINGS SUBMENU -->
+  <div id="block-menu" class="buttons hidden">
+    <p>🚫 General and specific block options…</p>
+    <button data-back>🔙 Back</button>
+  </div>
+
+  <!-- WHITELIST SUBMENU -->
+  <div id="whitelist-menu" class="buttons hidden">
+    <p>🌐 Manage your whitelist of links here…</p>
+    <button data-back>🔙 Back</button>
+  </div>
+
+  <!-- CENSOR SUBMENU -->
+  <div id="censor-menu" class="buttons hidden">
+    <p>✍️ Set your word censor rules…</p>
+    <button data-back>🔙 Back</button>
   </div>
 
   <script>
+    // Tell Telegram WebApp we’re ready:
     window.Telegram.WebApp.ready();
-    document.querySelectorAll('button[data-callback]').forEach(btn => {
+
+    // Utility to show exactly one menu:
+    function showMenu(id) {
+      document.querySelectorAll('body > div').forEach(div => {
+        div.classList.toggle('hidden', div.id !== id);
+      });
+    }
+
+    // Wire up "data-show" buttons:
+    document.querySelectorAll('button[data-show]').forEach(btn => {
       btn.addEventListener('click', () => {
-        window.Telegram.WebApp.sendData(JSON.stringify({
-          callback_data: btn.dataset.callback
-        }));
+        showMenu(btn.dataset.show);
+      });
+    });
+
+    // Wire up "back" buttons:
+    document.querySelectorAll('button[data-back]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        showMenu('main-menu');
       });
     });
   </script>
