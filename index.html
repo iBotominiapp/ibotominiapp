@@ -42,6 +42,7 @@
       color: var(--text);
       padding: .5rem;
       border-radius: 4px;
+      overflow-x: auto;
     }
   </style>
 </head>
@@ -57,29 +58,45 @@
   <!-- MAIN MENU -->
   <div id="main-menu" class="buttons">
     <button data-show="about-menu">ℹ️ About the Bot</button>
-    <button data-show="group-menu">Group Menu 📋</button>
-    <button data-show="commands-menu">Commands &amp; Manage 🧰</button>
-    <button data-show="forward-menu">📺 Channel & Forward To 📤</button>
-    <button data-show="reply-menu">Reply to Messages 📬</button>
+    <button data-show="group-menu">📋 Group Menu</button>
+    <button data-show="commands-menu">🧰 Commands &amp; Manage</button>
+    <button data-show="forward-menu">📺 Channel &amp; Forward To</button>
+    <button data-show="reply-menu">📬 Reply to Messages</button>
     <button data-show="clone-menu">👥 How to Clone BOT</button>
   </div>
 
-  <!-- ABOUT SUBMENU -->
+  <!-- ABOUT SUBMENU (populated with your functions_message) -->
   <div id="about-menu" class="buttons hidden">
     <p>
-      🤖 <b>Welcome to I BOTO</b> – the advanced management bot! ✨<br>
-      Manage your group with user management, content blocking, spam prevention, and more.
+      🤖 <strong>Welcome to I BOTO</strong> – the advanced management bot! ✨
+    </p>
+    <ul>
+      <li><strong>User Management:</strong> Track and manage users with options to restrict or allow access.</li>
+      <li><strong>Restrictions &amp; Blocks:</strong> Remove, block, mute, warn, and block media for unwanted users.</li>
+      <li><strong>Content Blocking:</strong> Block words, languages, links, and phone numbers to maintain a clean environment.</li>
+      <li><strong>Word Censorship:</strong> Censor inappropriate words.</li>
+      <li><strong>Spam Prevention:</strong> Prevent spam by blocking repetitive posts.</li>
+      <li><strong>Tags:</strong> Tag quality users and warn those not on special lists.</li>
+      <li><strong>Scheduled Posts:</strong> Automatically post text, media, and buttons.</li>
+    </ul>
+    <p>
+      Join the support group: 
+      <a href="https://t.me/i_boto_support" style="color: var(--accent); text-decoration: underline;">
+        @i_boto_support
+      </a>
+    </p>
+    <p>
+      For more info about data collected, read <code>/privacy</code>
     </p>
     <button data-back>🔙 Back</button>
   </div>
 
-  <!-- GROUP MENU SUBMENU -->
+  <!-- (Other submenus remain the same placeholders) -->
   <div id="group-menu" class="buttons hidden">
     <p>📋 Here’s how you manage your admin groups…</p>
     <button data-back>🔙 Back</button>
   </div>
 
-  <!-- COMMANDS SUBMENU -->
   <div id="commands-menu" class="buttons hidden">
     <button data-show="block-menu">🚫 Block Settings</button>
     <button data-show="whitelist-menu">Whitelist Links 🌐</button>
@@ -87,61 +104,51 @@
     <button data-back>🔙 Back</button>
   </div>
 
-  <!-- FORWARD SUBMENU -->
   <div id="forward-menu" class="buttons hidden">
     <p>📺 Set up channel forwarding here…</p>
     <button data-back>🔙 Back</button>
   </div>
 
-  <!-- REPLY SUBMENU -->
   <div id="reply-menu" class="buttons hidden">
     <p>📬 Reply-to-messages setup…</p>
     <button data-back>🔙 Back</button>
   </div>
 
-  <!-- CLONE BOT SUBMENU -->
   <div id="clone-menu" class="buttons hidden">
-    <p>👥 To clone the bot, send /clone in your group.</p>
+    <p>👥 To clone the bot, send <code>/clone</code> in your group.</p>
     <button data-back>🔙 Back</button>
   </div>
 
-  <!-- BLOCK SETTINGS SUBMENU -->
   <div id="block-menu" class="buttons hidden">
     <p>🚫 General and specific block options…</p>
     <button data-back>🔙 Back</button>
   </div>
 
-  <!-- WHITELIST SUBMENU -->
   <div id="whitelist-menu" class="buttons hidden">
     <p>🌐 Manage your whitelist of links here…</p>
     <button data-back>🔙 Back</button>
   </div>
 
-  <!-- CENSOR SUBMENU -->
   <div id="censor-menu" class="buttons hidden">
     <p>✍️ Set your word censor rules…</p>
     <button data-back>🔙 Back</button>
   </div>
 
   <script>
-    // Tell Telegram WebApp we’re ready:
     window.Telegram.WebApp.ready();
 
-    // Utility to show exactly one menu:
     function showMenu(id) {
       document.querySelectorAll('body > div').forEach(div => {
         div.classList.toggle('hidden', div.id !== id);
       });
     }
 
-    // Wire up "data-show" buttons:
     document.querySelectorAll('button[data-show]').forEach(btn => {
       btn.addEventListener('click', () => {
         showMenu(btn.dataset.show);
       });
     });
 
-    // Wire up "back" buttons:
     document.querySelectorAll('button[data-back]').forEach(btn => {
       btn.addEventListener('click', () => {
         showMenu('main-menu');
